@@ -44,14 +44,18 @@ int main() {
 		0.5f,-0.5f,0.0f,
 		0.0f,0.5f,0.0f
 	};
-
+	//Buffer Objects
 	unsigned int VBO;
 	glGenBuffers(1, &VBO);
+
 	unsigned int VAO;
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
+
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+	//Shaders
 	const char* vertexShaderSource = vertexShader();
 	unsigned int vertexShader;
 	compileVertexShader(vertexShaderSource,vertexShader);
@@ -61,6 +65,8 @@ int main() {
 	unsigned int shaderProgram;
 	shaderProgram = glCreateProgram();
 	setShaderProgram(shaderProgram, vertexShader, fragmentShader);
+
+
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
 		(void*)0);
 	glEnableVertexAttribArray(0);
